@@ -35,8 +35,8 @@ class SyncCompaniesData implements ShouldQueue
     }
 
     /**
-     * @param Collection $companies
-     * @return array
+     * @param Collection $companiesCollection
+     * @return array<mixed>
      */
     protected function prepareDate(Collection $companiesCollection): array
     {

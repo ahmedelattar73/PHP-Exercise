@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\DTO\CompanyTransfer;
+use Illuminate\Http\Client\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 
@@ -18,23 +19,23 @@ class DatahubService
      */
     public function fetch(): Collection
     {
-        $client = Http::retry(static::RETRY_TIMES, static::SLEEP_MILLI_SECONDS)
+        $response = Http::retry(static::RETRY_TIMES, static::SLEEP_MILLI_SECONDS)
                     ->get(static::NASDAQ_LIST_END_POINT);
 
-        if ($client->ok()) {
-            return $this->mapToTransfer($client);
+        if ($response->ok()) {
+            return $this->mapToTransfer($response);
         }
 
         throw new \Exception(trans('messages.errors.datahub_connection_error'));
     }
 
     /**
-     * @param $client
+     * @param Response $response
      * @return Collection
      */
-    protected function mapToTransfer($client): Collection
+    protected function mapToTransfer(Response $response): Collection
     {
-        return $client->collect()->map(function ($item) {
+        return $response->collect()->map(function ($item) {
             return new CompanyTransfer($item['Symbol']);
         });
     }
