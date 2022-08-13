@@ -28,7 +28,7 @@ class CompaniesController extends Controller
      */
     public function listHistoricalData(ListHistoricalDataRequest $historicalDataRequest): AnonymousResourceCollection
     {
-        $historicalDataCollection = HistoricalDataFacade::processHistoricalDataRequest(
+        $historicalDataCollection = HistoricalDataFacade::processListHistoricalDataRequest(
             $historicalDataRequest->getRequestDataTransfer()
         );
 

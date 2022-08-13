@@ -18,7 +18,7 @@ class HistoricalDataFacade
      *
      * @return ?Collection
      */
-    public function processHistoricalDataRequest(HistoricalDataRequestTransfer $historicalDataRequestTransfer): ?Collection
+    public function processListHistoricalDataRequest(HistoricalDataRequestTransfer $historicalDataRequestTransfer): ?Collection
     {
         $historicalDataCollection = app(YhFinanceService::class)->fetch(
             $historicalDataRequestTransfer->getSymbol()
