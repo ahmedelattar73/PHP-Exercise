@@ -24,10 +24,10 @@ class ListHistoricalDataRequest extends FormRequest
     public function rules()
     {
         return [
-            'symbol'  => 'required',
-            'start_date'  => 'required',
-            'end_date'  => 'required',
-            'email'  => 'required',
+            'symbol'  => 'required|exists:companies,symbol',
+            'start_date'  => 'required|date|date_format:Y-m-d|before:end_date|before_or_equal:today',
+            'end_date'  => 'required|date|date_format:Y-m-d|after:start_date|before_or_equal:today',
+            'email'  => 'required|email|max:80',
         ];
     }
 }
