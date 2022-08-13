@@ -7,9 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ListHistoricalDataRequest;
 use App\Http\Resources\CompanyResource;
 use App\Http\Resources\HistoricalDataResource;
+use App\Mail\HistoricalDataReport;
 use App\Repositories\CompanyRepository;
 use App\Services\YhFinanceService;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\Mail;
 
 class CompaniesController extends Controller
 {
@@ -52,6 +54,16 @@ class CompaniesController extends Controller
         $historicalData = app(YhFinanceService::class)->fetch(
             $historicalDataRequestTransfer->getSymbol()
         );
+
+        $companyTransfer = $this->companyRepository->findBySymbol($historicalDataRequestTransfer->getSymbol());
+
+        /**
+         * ToDo using event instead.
+         */
+        Mail::to($historicalDataRequest->validated()['email'])
+            ->send(new HistoricalDataReport(
+                $historicalDataRequestTransfer, $companyTransfer
+            ));
 
         return HistoricalDataResource::collection($historicalData);
     }

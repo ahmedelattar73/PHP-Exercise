@@ -19,10 +19,24 @@ class CompanyRepository
         $this->model = new Company();
     }
 
+    /**
+     * @return Collection
+     */
     public function all(): Collection
     {
-        return $this->mapToTransfer(
+        return $this->mapToCollectionTransfer(
             $this->model->all()
+        );
+    }
+
+    /**
+     * @param $symbol
+     * @return CompanyTransfer
+     */
+    public function findBySymbol($symbol): CompanyTransfer
+    {
+        return $this->mapToItemTransfer(
+            $this->model->where('symbol', $symbol)->first()
         );
     }
 
@@ -30,10 +44,19 @@ class CompanyRepository
      * @param Collection $response
      * @return Collection
      */
-    protected function mapToTransfer(Collection $response): Collection
+    protected function mapToCollectionTransfer(Collection $collection): Collection
     {
-        return $response->collect()->map(function ($item) {
+        return $collection->collect()->map(function ($item) {
             return new CompanyTransfer($item->symbol , $item->name);
         });
+    }
+
+    /**
+     * @param Company $item
+     * @return CompanyTransfer
+     */
+    protected function mapToItemTransfer(Company $item): CompanyTransfer
+    {
+        return new CompanyTransfer($item->symbol , $item->name);
     }
 }
