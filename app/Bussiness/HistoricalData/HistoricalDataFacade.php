@@ -19,7 +19,6 @@ class HistoricalDataFacade
      * - Send email to the user.
      *
      * @param HistoricalDataRequestTransfer $historicalDataRequestTransfer
-     * @param ListHistoricalDataRequest $historicalDataRequest
      *
      * @return ?Collection
      */

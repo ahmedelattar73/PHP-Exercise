@@ -15,8 +15,8 @@ class CompanyResource extends JsonResource
     public function toArray($request): array
     {
         return [
-            'symbol'  => $this->getSymbol(),
-            'name'  => $this->getName(),
+            'symbol'  => $this->getSymbol(), // @phpstan-ignore-line
+            'name'  => $this->getName(), // @phpstan-ignore-line
         ];
     }
 }

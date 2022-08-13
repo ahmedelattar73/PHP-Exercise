@@ -30,10 +30,10 @@ class CompanyRepository
     }
 
     /**
-     * @param $symbol
+     * @param string $symbol
      * @return CompanyTransfer
      */
-    public function findBySymbol($symbol): CompanyTransfer
+    public function findBySymbol(string $symbol): CompanyTransfer
     {
         return $this->mapToItemTransfer(
             $this->model->where('symbol', $symbol)->first()
@@ -41,7 +41,7 @@ class CompanyRepository
     }
 
     /**
-     * @param Collection $response
+     * @param Collection $collection
      * @return Collection
      */
     protected function mapToCollectionTransfer(Collection $collection): Collection
