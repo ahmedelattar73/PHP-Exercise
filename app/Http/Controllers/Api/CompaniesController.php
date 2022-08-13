@@ -2,39 +2,24 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Bussiness\HistoricalData\Facades\HistoricalData;
 use App\DTO\HistoricalDataRequestTransfer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ListHistoricalDataRequest;
 use App\Http\Resources\CompanyResource;
 use App\Http\Resources\HistoricalDataResource;
-use App\Mail\HistoricalDataReport;
 use App\Repositories\CompanyRepository;
-use App\Services\YhFinanceService;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use Illuminate\Support\Facades\Mail;
 
 class CompaniesController extends Controller
 {
-    /**
-     * @var CompanyRepository
-     */
-    protected CompanyRepository $companyRepository;
-
-    /**
-     * @param CompanyRepository $companyRepository
-     */
-    public function __construct(CompanyRepository $companyRepository)
-    {
-        $this->companyRepository = $companyRepository;
-    }
-
     /**
      * @return AnonymousResourceCollection
      */
     public function list(): AnonymousResourceCollection
     {
         return CompanyResource::collection(
-            $this->companyRepository->all()
+            app(CompanyRepository::class)->all()
         );
     }
 
@@ -51,20 +36,8 @@ class CompaniesController extends Controller
             $historicalDataRequest->validated()['email']
         );
 
-        $historicalData = app(YhFinanceService::class)->fetch(
-            $historicalDataRequestTransfer->getSymbol()
-        );
+        $HistoricalDataFacade = HistoricalData::processHistoricalDataRequest($historicalDataRequestTransfer, $historicalDataRequest);
 
-        $companyTransfer = $this->companyRepository->findBySymbol($historicalDataRequestTransfer->getSymbol());
-
-        /**
-         * ToDo using event instead.
-         */
-        Mail::to($historicalDataRequest->validated()['email'])
-            ->send(new HistoricalDataReport(
-                $historicalDataRequestTransfer, $companyTransfer
-            ));
-
-        return HistoricalDataResource::collection($historicalData);
+        return HistoricalDataResource::collection($HistoricalDataFacade);
     }
 }
