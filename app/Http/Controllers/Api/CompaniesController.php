@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\DTO\HistoricalDataRequestTransfer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ListHistoricalDataRequest;
 use App\Http\Resources\CompanyResource;
@@ -41,8 +42,15 @@ class CompaniesController extends Controller
      */
     public function listHistoricalData(ListHistoricalDataRequest $historicalDataRequest): AnonymousResourceCollection
     {
+        $historicalDataRequestTransfer = new HistoricalDataRequestTransfer(
+            $historicalDataRequest->validated()['symbol'],
+            $historicalDataRequest->validated()['start_date'],
+            $historicalDataRequest->validated()['end_date'],
+            $historicalDataRequest->validated()['email']
+        );
+
         $historicalData = app(YhFinanceService::class)->fetch(
-            $historicalDataRequest->validated()['symbol']
+            $historicalDataRequestTransfer->getSymbol()
         );
 
         return HistoricalDataResource::collection($historicalData);
