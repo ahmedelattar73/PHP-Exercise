@@ -16937,7 +16937,11 @@
      */ 
         class HistoricalDataFacade {
                     /**
+         * List Historical data by company.
          * 
+         * - Call YhFinance service to fetch the data.
+         * - Get company data from database.
+         * - Send email to the user.
          *
          * @param \App\DTO\HistoricalDataRequestTransfer $historicalDataRequestTransfer
          * @param \App\Http\Requests\ListHistoricalDataRequest $historicalDataRequest
