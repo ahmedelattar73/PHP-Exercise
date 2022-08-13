@@ -16944,10 +16944,10 @@
          * @return \App\Bussiness\HistoricalData\?Collection 
          * @static 
          */ 
-        public static function processHistoricalDataRequest($historicalDataRequestTransfer, $historicalDataRequest)
+        public static function processHistoricalDataRequest($historicalDataRequestTransfer)
         {
                         /** @var \App\Bussiness\HistoricalData\HistoricalData $instance */
-                        return $instance->processHistoricalDataRequest($historicalDataRequestTransfer, $historicalDataRequest);
+                        return $instance->processHistoricalDataRequest($historicalDataRequestTransfer);
         }
          
     }

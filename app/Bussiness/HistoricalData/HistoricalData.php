@@ -18,22 +18,20 @@ class HistoricalData
      *
      * @return ?Collection
      */
-    public function processHistoricalDataRequest(
-        HistoricalDataRequestTransfer $historicalDataRequestTransfer,
-        ListHistoricalDataRequest $historicalDataRequest
-    ): ?Collection {
-        $historicalData = app(YhFinanceService::class)->fetch(
+    public function processHistoricalDataRequest(HistoricalDataRequestTransfer $historicalDataRequestTransfer): ?Collection
+    {
+        $historicalDataCollection = app(YhFinanceService::class)->fetch(
             $historicalDataRequestTransfer->getSymbol()
         );
 
         $companyTransfer = app(CompanyRepository::class)->findBySymbol($historicalDataRequestTransfer->getSymbol());
 
-        Mail::to($historicalDataRequest->validated()['email'])
+        Mail::to($historicalDataRequestTransfer->getEmail())
             ->send(new HistoricalDataReport(
                 $historicalDataRequestTransfer,
                 $companyTransfer
             ));
 
-        return $historicalData;
+        return $historicalDataCollection;
     }
 }

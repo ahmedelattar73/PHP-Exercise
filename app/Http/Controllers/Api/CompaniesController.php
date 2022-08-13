@@ -30,14 +30,14 @@ class CompaniesController extends Controller
     public function listHistoricalData(ListHistoricalDataRequest $historicalDataRequest): AnonymousResourceCollection
     {
         $historicalDataRequestTransfer = new HistoricalDataRequestTransfer(
-            $historicalDataRequest->validated()['symbol'],
-            $historicalDataRequest->validated()['start_date'],
-            $historicalDataRequest->validated()['end_date'],
-            $historicalDataRequest->validated()['email']
+            $historicalDataRequest->input('symbol'),
+            $historicalDataRequest->input('start_date'),
+            $historicalDataRequest->input('end_date'),
+            $historicalDataRequest->input('email')
         );
 
-        $HistoricalDataFacade = HistoricalData::processHistoricalDataRequest($historicalDataRequestTransfer, $historicalDataRequest);
+        $historicalDataCollection = HistoricalData::processHistoricalDataRequest($historicalDataRequestTransfer);
 
-        return HistoricalDataResource::collection($HistoricalDataFacade);
+        return HistoricalDataResource::collection($historicalDataCollection);
     }
 }
