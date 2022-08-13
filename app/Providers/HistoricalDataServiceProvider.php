@@ -14,7 +14,7 @@ class HistoricalDataServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        App::bind('historical-data', function() {
+        App::bind('historical-data', function () {
             return new \App\Bussiness\HistoricalData\HistoricalData();
         });
     }

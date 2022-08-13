@@ -20,8 +20,8 @@ class HistoricalData
      */
     public function processHistoricalDataRequest(
         HistoricalDataRequestTransfer $historicalDataRequestTransfer,
-        ListHistoricalDataRequest $historicalDataRequest): ?Collection
-    {
+        ListHistoricalDataRequest $historicalDataRequest
+    ): ?Collection {
         $historicalData = app(YhFinanceService::class)->fetch(
             $historicalDataRequestTransfer->getSymbol()
         );
@@ -30,7 +30,8 @@ class HistoricalData
 
         Mail::to($historicalDataRequest->validated()['email'])
             ->send(new HistoricalDataReport(
-                $historicalDataRequestTransfer, $companyTransfer
+                $historicalDataRequestTransfer,
+                $companyTransfer
             ));
 
         return $historicalData;

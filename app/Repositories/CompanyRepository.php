@@ -47,7 +47,7 @@ class CompanyRepository
     protected function mapToCollectionTransfer(Collection $collection): Collection
     {
         return $collection->collect()->map(function ($item) {
-            return new CompanyTransfer($item->symbol , $item->name);
+            return new CompanyTransfer($item->symbol, $item->name);
         });
     }
 
@@ -57,6 +57,6 @@ class CompanyRepository
      */
     protected function mapToItemTransfer(Company $item): CompanyTransfer
     {
-        return new CompanyTransfer($item->symbol , $item->name);
+        return new CompanyTransfer($item->symbol, $item->name);
     }
 }
