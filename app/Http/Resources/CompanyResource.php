@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CompanyResource extends JsonResource
@@ -16,8 +15,7 @@ class CompanyResource extends JsonResource
     public function toArray($request): array
     {
         return [
-            'id'  => $this->id,
-            'symbol'  => $this->symbol,
+            'symbol'  => $this->getSymbol(),
         ];
     }
 }
