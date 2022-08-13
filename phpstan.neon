@@ -1,6 +1,8 @@
 parameters:
 	level: 6
 	checkGenericClassInNonGenericObjectType: false
+	universalObjectCratesClasses:
+	    - Illuminate\Http\Resources\Json\JsonResource
 	paths:
 		- app
 		- config
