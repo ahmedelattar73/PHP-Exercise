@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Bussiness\HistoricalData\Facades\HistoricalData;
-use App\DTO\HistoricalDataRequestTransfer;
+use App\Bussiness\HistoricalData\Facades\HistoricalDataFacade;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ListHistoricalDataRequest;
 use App\Http\Resources\CompanyResource;
@@ -29,14 +28,9 @@ class CompaniesController extends Controller
      */
     public function listHistoricalData(ListHistoricalDataRequest $historicalDataRequest): AnonymousResourceCollection
     {
-        $historicalDataRequestTransfer = new HistoricalDataRequestTransfer(
-            $historicalDataRequest->input('symbol'),
-            $historicalDataRequest->input('start_date'),
-            $historicalDataRequest->input('end_date'),
-            $historicalDataRequest->input('email')
+        $historicalDataCollection = HistoricalDataFacade::processHistoricalDataRequest(
+            $historicalDataRequest->getRequestDataTransfer()
         );
-
-        $historicalDataCollection = HistoricalData::processHistoricalDataRequest($historicalDataRequestTransfer);
 
         return HistoricalDataResource::collection($historicalDataCollection);
     }

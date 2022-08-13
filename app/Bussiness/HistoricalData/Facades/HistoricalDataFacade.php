@@ -4,13 +4,13 @@ namespace App\Bussiness\HistoricalData\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class HistoricalData extends Facade
+class HistoricalDataFacade extends Facade
 {
     /**
      * @return string
      */
     protected static function getFacadeAccessor(): string
     {
-        return 'historical-data';
+        return 'historical-data-facade';
     }
 }

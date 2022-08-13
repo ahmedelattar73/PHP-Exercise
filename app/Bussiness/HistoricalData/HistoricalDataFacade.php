@@ -10,7 +10,7 @@ use App\Services\YhFinanceService;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Mail;
 
-class HistoricalData
+class HistoricalDataFacade
 {
     /**
      * @param HistoricalDataRequestTransfer $historicalDataRequestTransfer

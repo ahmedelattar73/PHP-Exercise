@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\DTO\HistoricalDataRequestTransfer;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ListHistoricalDataRequest extends FormRequest
@@ -29,5 +30,18 @@ class ListHistoricalDataRequest extends FormRequest
             'end_date'  => 'required|date|date_format:Y-m-d|after:start_date|before_or_equal:today',
             'email'  => 'required|email|max:80',
         ];
+    }
+
+    /**
+     * @return HistoricalDataRequestTransfer
+     */
+    public function getRequestDataTransfer(): HistoricalDataRequestTransfer
+    {
+        return new HistoricalDataRequestTransfer(
+            $this->input('symbol'),
+            $this->input('start_date'),
+            $this->input('end_date'),
+            $this->input('email')
+        );
     }
 }

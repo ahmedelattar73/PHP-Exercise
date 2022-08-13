@@ -210,7 +210,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-         'HistoricalData' => \App\Bussiness\HistoricalData\Facades\HistoricalData::class,
+         'HistoricalData' => \App\Bussiness\HistoricalData\Facades\HistoricalDataFacade::class,
     ])->toArray(),
 
 ];

@@ -16935,7 +16935,7 @@
      * 
      *
      */ 
-        class HistoricalData {
+        class HistoricalDataFacade {
                     /**
          * 
          *
@@ -16946,7 +16946,7 @@
          */ 
         public static function processHistoricalDataRequest($historicalDataRequestTransfer)
         {
-                        /** @var \App\Bussiness\HistoricalData\HistoricalData $instance */
+                        /** @var \App\Bussiness\HistoricalData\HistoricalDataFacade $instance */
                         return $instance->processHistoricalDataRequest($historicalDataRequestTransfer);
         }
          
@@ -21163,7 +21163,7 @@ namespace  {
             class Validator extends \Illuminate\Support\Facades\Validator {}
             class View extends \Illuminate\Support\Facades\View {}
             class Vite extends \Illuminate\Support\Facades\Vite {}
-            class HistoricalData extends \App\Bussiness\HistoricalData\Facades\HistoricalData {}
+            class HistoricalData extends \App\Bussiness\HistoricalData\Facades\HistoricalDataFacade {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}
      
 }
