@@ -6,7 +6,6 @@ use App\DTO\CompanyTransfer;
 use App\Models\Company;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Client\Response;
 
 class CompanyRepository
 {
