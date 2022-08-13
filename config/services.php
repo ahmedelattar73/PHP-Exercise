@@ -31,4 +31,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'yh_finance' => [
+        'x_rapid_api_key' => env('X_RAPID_API_KEY'),
+    ],
+
 ];
