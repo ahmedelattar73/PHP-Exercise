@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->string('symbol');
+            $table->string('symbol')->unique()->index();
+            $table->string('name');
             $table->timestamps();
         });
     }

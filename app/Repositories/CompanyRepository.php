@@ -33,7 +33,7 @@ class CompanyRepository
     protected function mapToTransfer(Collection $response): Collection
     {
         return $response->collect()->map(function ($item) {
-            return new CompanyTransfer($item->symbol);
+            return new CompanyTransfer($item->symbol , $item->name);
         });
     }
 }

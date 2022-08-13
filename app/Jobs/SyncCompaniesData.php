@@ -42,7 +42,10 @@ class SyncCompaniesData implements ShouldQueue
     {
         $data = [];
         foreach ($companiesCollection as $companyTransfer) {
-            $data[] = ['symbol' => $companyTransfer->getSymbol()];
+            $data[] = [
+                'symbol' => $companyTransfer->getSymbol(),
+                'name' => $companyTransfer->getName(),
+            ];
         }
 
         return $data;

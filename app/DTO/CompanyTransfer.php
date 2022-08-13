@@ -4,14 +4,24 @@ namespace App\DTO;
 
 class CompanyTransfer
 {
+    /**
+     * @var string
+     */
     protected string $symbol;
 
     /**
-     * @param string $symbol
+     * @var string
      */
-    public function __construct(string $symbol)
+    protected string $name;
+
+    /**
+     * @param string $symbol
+     * @param string $name
+     */
+    public function __construct(string $symbol, string $name)
     {
         $this->symbol = $symbol;
+        $this->name = $name;
     }
 
     /**
@@ -28,5 +38,21 @@ class CompanyTransfer
     public function setSymbol(string $symbol): void
     {
         $this->symbol = $symbol;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
     }
 }

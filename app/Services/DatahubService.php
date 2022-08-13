@@ -36,7 +36,10 @@ class DatahubService
     protected function mapToTransfer(Response $response): Collection
     {
         return $response->collect()->map(function ($item) {
-            return new CompanyTransfer($item['Symbol']);
+            return new CompanyTransfer(
+                $item['Symbol'],
+                $item['Company Name'],
+            );
         });
     }
 }

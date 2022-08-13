@@ -14,6 +14,7 @@ class Company extends Model
     use HasFactory;
 
     protected $fillable = [
-        'symbol'
+        'symbol',
+        'name',
     ];
 }

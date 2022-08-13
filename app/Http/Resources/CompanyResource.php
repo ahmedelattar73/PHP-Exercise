@@ -16,6 +16,7 @@ class CompanyResource extends JsonResource
     {
         return [
             'symbol'  => $this->getSymbol(),
+            'name'  => $this->getName(),
         ];
     }
 }
