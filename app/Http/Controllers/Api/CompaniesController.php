@@ -15,7 +15,7 @@ class CompaniesController extends Controller
     /**
      * @return AnonymousResourceCollection
      */
-    public function list(): AnonymousResourceCollection
+    public function listCompaniesData(): AnonymousResourceCollection
     {
         return CompanyResource::collection(
             app(CompanyRepository::class)->all()
