@@ -24,7 +24,8 @@ class HistoricalData
             $historicalDataRequestTransfer->getSymbol()
         );
 
-        $companyTransfer = app(CompanyRepository::class)->findBySymbol($historicalDataRequestTransfer->getSymbol());
+        $companyTransfer = app(CompanyRepository::class)
+            ->findBySymbol($historicalDataRequestTransfer->getSymbol());
 
         Mail::to($historicalDataRequestTransfer->getEmail())
             ->send(new HistoricalDataReport(
