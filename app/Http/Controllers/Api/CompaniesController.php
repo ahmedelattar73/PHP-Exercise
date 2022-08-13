@@ -15,7 +15,7 @@ class CompaniesController extends Controller
     /**
      * @return AnonymousResourceCollection
      */
-    public function listCompaniesData(): AnonymousResourceCollection
+    public function listCompaniesAction(): AnonymousResourceCollection
     {
         return CompanyResource::collection(
             app(CompanyRepository::class)->all()
@@ -26,7 +26,7 @@ class CompaniesController extends Controller
      * @param ListHistoricalDataRequest $historicalDataRequest
      * @return AnonymousResourceCollection
      */
-    public function listHistoricalData(ListHistoricalDataRequest $historicalDataRequest): AnonymousResourceCollection
+    public function listHistoricalDataAction(ListHistoricalDataRequest $historicalDataRequest): AnonymousResourceCollection
     {
         $historicalDataCollection = HistoricalDataFacade::processListHistoricalDataRequest(
             $historicalDataRequest->getRequestDataTransfer()

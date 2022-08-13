@@ -15,6 +15,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['namespace' => 'App\Http\Controllers\Api'], function () {
-    Route::get('/companies', 'CompaniesController@listCompaniesData');
-    Route::get('/historical-data', 'CompaniesController@listHistoricalData');
+    Route::get('/companies', 'CompaniesController@listCompaniesAction');
+    Route::get('/historical-data', 'CompaniesController@listHistoricalDataAction');
 });
