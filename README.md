@@ -48,3 +48,10 @@ $ ./vendor/bin/sail php ./vendor/bin/phpcbf // Code sniffer Fix.
 ```bash  
 $ ./vendor/bin/sail php ./vendor/bin/phpstan analyse -l 6 // Code analyzer.
 ```
+
+- [laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper).
+```bash  
+$ ./vendor/bin/sail php artisan ide-helper:generate //PHPDoc generation for Laravel Facades 
+$ ./vendor/bin/sail php artisan ide-helper:models - PHPDocs for models
+$ ./vendor/bin/sail php artisan ide-helper:meta - PhpStorm Meta file
+```
