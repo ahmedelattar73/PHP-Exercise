@@ -3,6 +3,7 @@
 namespace App\Bussiness\HistoricalData;
 
 use App\DTO\HistoricalDataRequestTransfer;
+use App\Events\SearchedHistoricalData;
 use App\Mail\HistoricalDataReport;
 use App\Repositories\CompanyRepository;
 use App\Services\YhFinanceService;
@@ -33,11 +34,7 @@ class HistoricalData
         $companyTransfer = app(CompanyRepository::class)
             ->findBySymbol($historicalDataRequestTransfer->getSymbol());
 
-        Mail::to($historicalDataRequestTransfer->getEmail())
-            ->send(new HistoricalDataReport(
-                $historicalDataRequestTransfer,
-                $companyTransfer
-            ));
+        SearchedHistoricalData::dispatch($historicalDataRequestTransfer, $companyTransfer);
 
         return $historicalDataCollection;
     }
