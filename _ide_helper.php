@@ -16944,13 +16944,12 @@
          * - Send email to the user.
          *
          * @param \App\DTO\HistoricalDataRequestTransfer $historicalDataRequestTransfer
-         * @param \App\Http\Requests\ListHistoricalDataRequest $historicalDataRequest
          * @return \App\Bussiness\HistoricalData\?Collection 
          * @static 
          */ 
         public static function processListHistoricalDataRequest($historicalDataRequestTransfer)
         {
-                        /** @var \App\Bussiness\HistoricalData\HistoricalDataFacade $instance */
+                        /** @var \App\Bussiness\HistoricalData\HistoricalData $instance */
                         return $instance->processListHistoricalDataRequest($historicalDataRequestTransfer);
         }
          

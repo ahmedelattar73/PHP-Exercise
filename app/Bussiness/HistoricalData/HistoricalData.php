@@ -3,14 +3,13 @@
 namespace App\Bussiness\HistoricalData;
 
 use App\DTO\HistoricalDataRequestTransfer;
-use App\Http\Requests\ListHistoricalDataRequest;
 use App\Mail\HistoricalDataReport;
 use App\Repositories\CompanyRepository;
 use App\Services\YhFinanceService;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Mail;
 
-class HistoricalDataFacade
+class HistoricalData
 {
     /**
      * List Historical data by company.

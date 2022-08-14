@@ -11,6 +11,6 @@ class HistoricalDataFacade extends Facade
      */
     protected static function getFacadeAccessor(): string
     {
-        return 'historical-data-facade';
+        return 'historical-data';
     }
 }
