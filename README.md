@@ -15,6 +15,11 @@ docker run --rm \ -u "$(id -u):$(id -g)" \
  -w /var/www/html \ laravelsail/php81-composer:latest \ composer install --ignore-platform-reqs
  ```  
 
+- Add .env file with Rapid API service key **X_RAPID_API_KEY**.
+```bash  
+$ cp .env.example .env
+ ```  
+
 - Build and run docker.
 ```bash  
 $ ./vendor/bin/sail up
